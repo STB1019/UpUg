@@ -1,0 +1,38 @@
+\documentclass[pdf]{beamer}
+\mode<presentation>{}
+
+\usepackage{xparse}
+\usepackage{etoolbox}
+
+\input{src/cmds/commands.tex}
+
+%%%%%%%%%%%%%%%%%%%%% TITLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Fundamentals elements of Bash and Linux}
+\subtitle{Quick guide to start working with linux}
+\setauthor{Massimo Bono}
+\setemail{m.bono@unibs.it}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%% ROADMAP BEFORE EVERY SECTION %%%%%%%%%%%%%
+
+\AtBeginSection[]{
+	\begin{frame}<beamer>
+	\frametitle{RoadMap}
+	\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Bash}
+
+\begin{frame}{What is a bash?}
+\end{frame}
+
+
+\end{document}

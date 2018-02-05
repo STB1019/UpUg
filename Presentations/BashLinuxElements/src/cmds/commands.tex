@@ -1,0 +1,17 @@
+
+\makeatletter
+
+\global\def\presentation@author{}
+\global\def\presentation@email{}
+
+\NewDocumentCommand{\setauthor}{m}{
+	\renewcommand{\presentation@author}{#1}%
+	\author{\presentation@author \\ \presentation@email}%
+}
+
+\NewDocumentCommand{\setemail}{m}{
+	\renewcommand{\presentation@email}{\texttt{#1}}%
+	\author{\presentation@author \\ \presentation@email}%
+}
+
+\makeatother
