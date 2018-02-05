@@ -99,8 +99,12 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 		The man contains lots fo useful information: the available options of a command, how to use it, scenarios where it can be successfully used and how to interpret possibly errors.
 		
 		\begin{note}
-			If you want some examples for a particular command, the MAN has them as well! This is why in this presentation we offer no examples whatsoever.
+			If you want some examples for a particular command, the MAN may have them as well.
 		\end{note}
+	}
+	
+	\only<3>{
+		If \code{man} doesn't help you out, you may try \code{info command-name}. This is an explorable manual containing more information about the command. You may find additional examples here too.
 	}
 	
 \end{frame}
@@ -168,5 +172,45 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 \end{frame}
 
 \begin{frame}{File manipulation}
-
+	\begin{block}{cp}
+		Copy files and directories. For example \code{cp file\_to\_copy name\_of\_copy}
+	\end{block}
+	
+	\begin{block}{mv}
+		Cut files and directory and paste them in another place. You can use this command to rename files as well (\eg \code{mv hello world}).
+	\end{block}
+	
+	\begin{block}{cat}
+		Concatenate several files content in a single output. You can use it to view the content of a single file as well (\eg \code{cat hello}).
+	\end{block}
+	
+	\begin{block}{less}
+		Read a file. This is an awesome reader which can even several useful commands. You can view the commands in \code{less} by pressing \mdQuote{h} when less is executing.
+	\end{block}
 \end{frame}
+
+\begin{frame}{Miscellanea}
+	\begin{block}{history}
+		Allows you to view the last commands you've put in the bash. Useful if you don't remember a command you've executed.
+	\end{block}
+	
+	\begin{block}{wget}
+		Download a file from the internet.
+	\end{block}
+	
+	\begin{block}{grep}
+		Given a list of text lines, retrieve only the ones containing a particular pattern. The most common use is \code{cat "DivinaCommedia" | grep "Virgilio"} (at the moment ignore the character \code{|}).
+	\end{block}
+\end{frame}
+
+\begin{frame}{Exercise}
+	\begin{enumerate}
+		\item<1-> download the html page \code{http://artificial-intelligence.unibs.it/didattica-IA/?page_id=10}
+		\item<2-> save the just downloaded page with \mdQuote{AIslides.html}
+		\item<3-> use less to view the HTML code of the page;
+		\item<4-> What is the character set of the page? (Hint: search \mdQuote{charset} in the top of the page);
+		\item<5-> Search every link of PDF file in the downloaded page (Hint: use \code{grep} as explained before by matching the PDF extension: every PDF has it!);
+		\item<6-> Download a pdf and look at the awesomeness that is artificial intelligence!
+	\end{enumerate}
+\end{frame}
+
