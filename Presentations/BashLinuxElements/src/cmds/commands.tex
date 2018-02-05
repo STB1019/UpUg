@@ -1,4 +1,6 @@
 
+%%%%%%%%%%%%%%%%%%%%%%%% CUSTOM AUTHOR AND EMAIL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \makeatletter
 
 \global\def\presentation@author{}
@@ -15,3 +17,62 @@
 }
 
 \makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% ARTICLE MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NewDocumentCommand{\eg}{}{%
+	e.g.,%
+}
+
+\NewDocumentCommand{\ie}{}{%
+	i.e.,%
+}
+
+\definecolor{codeColor}{rgb}{0.952,0.956,0.956}
+
+\NewDocumentCommand{\code}{m}{
+	\hl[codeColor]{\texttt{#1}}%
+}
+
+\NewDocumentCommand{\mdQuote}{m}{
+	``#1''%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CENTER WITH CUSTOM SPACE %%%%%%%%%%%%%%%%%%%%%
+
+\NewDocumentEnvironment{parcenter}{O{6pt} O{6pt}}{%
+	\parskip=#1\par\nopagebreak\centering%
+}{%
+	\par\noindent\ignorespacesafterend
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% HIGHLIGHT IN BEAMER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%https://tex.stackexchange.com/a/41693/145331
+
+\makeatletter
+
+\let\old@hl\hl
+\RenewDocumentCommand{\hl}{O{yellow} m}{%
+	\let\set@color\beamerorig@set@color%
+	\let\reset@color\beamerorig@reset@color%
+	\sethlcolor{#1}%
+	\old@hl{#2}%
+}
+
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%% CUSTOM BLOCKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment<>{note}{%
+  \begin{actionenv}#1%
+      \def\insertblocktitle{Note}%
+      \par%
+      \mode<presentation>{%
+        \setbeamercolor{block title}{fg=white,bg=orange!20!black}
+       \setbeamercolor{block body}{fg=black,bg=olive!50}
+       \setbeamercolor{itemize item}{fg=orange!20!black}
+       \setbeamertemplate{itemize item}[triangle]
+     }%
+      \usebeamertemplate{block begin}}
+    {\par\usebeamertemplate{block end}\end{actionenv}}
+
