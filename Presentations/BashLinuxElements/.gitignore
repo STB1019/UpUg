@@ -15,6 +15,9 @@ build/
 *.cb2
 .*.lb
 
+#backup file
+*~
+
 ## Intermediate documents:
 *.dvi
 *.xdv
