@@ -29,7 +29,7 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 	\end{note}
 \end{frame}
 
-\subsection{Bash: basic commands}
+\subsection{Bash: base concepts}
 
 \begin{frame}{Open the shell}
 	The shell has different names depending on your operating system. For example:
@@ -40,14 +40,6 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 	\end{itemize}
 	
 	The shell will start in some directory in your system. For example is may start in \code{/home/your-username/};
-\end{frame}
-
-\begin{frame}{Really basic command}
-
-	\begin{block}{man}
-		\code{man} stands for \textbf{MANual}. If you want to know all the details about a command, invoke its manual. For example, if you want to know the details of \code{ls}, type \code{man ls}. Basically you type \code{man} followed by a space followed by the name of the command you want to read about. If you don't know the exact syntax of a command, be super sure to check its manual before asking questions! If people, after listening to a question of yours, reply with \mdQuote{RTFM}, it means you should have read the manual (RTFM stands for \mdQuote{\textbf{R}ead \textbf{T}he \textbf{F}unny/\textbf{F}*****g \textbf{M}anual}).
-	\end{block}
-	
 \end{frame}
 
 \begin{frame}{Command structure}
@@ -93,17 +85,87 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 		
 \end{frame}
 
-\begin{frame}
+\subsection{Bash: commands}
+
+\begin{frame}{Really basic command}
+
+	\only<1>{
+		\begin{block}{man}
+			\code{man} stands for \textbf{MANual}. If you want to know all the details about a command, invoke its manual. For example, if you want to know the details of \code{ls}, type \code{man ls}. Basically you type \code{man} followed by a space followed by the name of the command you want to read about. If you don't know the exact syntax of a command, be super sure to check its manual before asking questions! If people, after listening to a question of yours, reply with \mdQuote{RTFM}, it means you should have read the manual (RTFM stands for \mdQuote{\textbf{R}ead \textbf{T}he \textbf{F}unny/\textbf{F}*****g \textbf{M}anual}).
+		\end{block}
+	}
+	
+	\only<2>{
+		The man contains lots fo useful information: the available options of a command, how to use it, scenarios where it can be successfully used and how to interpret possibly errors.
+		
+		\begin{note}
+			If you want some examples for a particular command, the MAN has them as well! This is why in this presentation we offer no examples whatsoever.
+		\end{note}
+	}
+	
+\end{frame}
+
+\begin{frame}{Exercise}
+
+	\begin{enumerate}
+		\item<1-> What \code{mkdir} command does?
+		\item<2-> Tell me an example of command option (both brief and long);
+		\item<3-> How many arguments it can accept?
+	\end{enumerate}
+	
+\end{frame}
+
+\begin{frame}{File system exploration}
 
 	\begin{block}{pwd}
 		\code{pwd} will return the \textbf{absolute path} of the directory you're currently in. Super useful if you got lost in the file system.
 	\end{block}
 	
 	\begin{block}{ls}
-		returns the list of files (and directories) in the directory you're in.
+		returns the list of files (and directories) in the directory you're in. The options of this command tweak the information and the order used to output the content of a directory
+	\end{block}
+	
+	\begin{block}{cd}
+		Enters in a subdirectory inside \code{pwd}. Every directory has the directory \code{..}, representing the parent of the directory itself, and the directory \code{.}, representing the directory itself. Hence, the direcotry \mdQuote{/home/koldar/} has a subdirectory called \code{..} pointing to \code{/home/} and a directory called \code{.}, pointing to \code{/home/koldar/}.
 	\end{block}
 
 \end{frame}
 
+\begin{frame}{File system manipulation}
 
+	\begin{block}{mkdir}
+		Creates a directory in the current working directory.
+	\end{block}
+	
+	\begin{block}{rmdir}
+		Remove an empty directory from the file system.
+	\end{block}
+	
+	\begin{block}{rm}
+		Remove one or more directories from the file system.
+	\end{block}
+	
+	\begin{block}{touch}
+		update to the current time the \mdQuote{last modified date} of a file. Creates the file if it doesn't exist.
+	\end{block}
+	
+	\begin{block}{nano}
+		Open a (simplicistic) editor used to alter files. Use \keystroke{Ctrl} + \keystroke{X} to save and exit.
+	\end{block}
 
+\end{frame}
+
+\begin{frame}{Exercise}
+
+	\begin{enumerate}
+		\item<1-> Create a directory called \mdQuote{hello}?
+		\item<2-> Inside it, create a file \mdQuote{world}.
+		\item<3-> Inside file \mdQuote{world}, write \mdQuote{hello world};
+		\item<4-> save and exit the file.
+		\item<3-> Create a copy of \mdQuote{world} file, called \mdQuote{world2}. Use \code{cp} command.
+	\end{enumerate}
+	
+\end{frame}
+
+\begin{frame}{File manipulation}
+\end{frame}
