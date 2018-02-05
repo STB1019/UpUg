@@ -97,3 +97,20 @@
 \NewDocumentCommand{\keyCtrl}{}{%
 	\keystroke{Ctrl}%
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\newbool{is@frame@titleframe}
+\boolfalse{is@frame@titleframe}
+
+\newenvironment<>{titleframe}{%
+	\booltrue{is@frame@titleframe}%
+	\begin{frame}%
+}{%
+	\end{frame}%
+	\boolfalse{is@frame@titleframe}%
+	\setcounter{framenumber}{0}
+}
+
+\makeatother

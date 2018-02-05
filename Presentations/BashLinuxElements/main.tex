@@ -26,15 +26,6 @@
 \setemail{m.bono@unibs.it}
 \date{\today}
 
-%%%%%%%%%%%%%%%%%%%%%%% ROADMAP BEFORE EVERY SECTION %%%%%%%%%%%%%
-
-\AtBeginSection[]{
-	\begin{frame}<beamer>
-	\frametitle{RoadMap}
-	\tableofcontents[currentsection]
-	\end{frame}
-}
-
 %%%%%%%%%%%%%%%%%%%% SET SEARH PATHS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \addSrcFolder{{src/texs/}}
@@ -43,15 +34,32 @@
 
 %%%%%%%%%%%%%%%%%%%%% CUSTOMIZE BEAMER OUTPUT %%%%%%%%%%%%%%%%%%%%%%
 
+\AtBeginSection[]{
+	\begin{frame}<beamer>
+	\frametitle{RoadMap}
+	\tableofcontents[currentsection]
+	\end{frame}
+}
+
 \setbeamertemplate{bibliography item}[text]
+
+\beamertemplatenavigationsymbolsempty
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \ifbool{is@frame@titleframe}{}{\insertframenumber/\inserttotalframenumber}%
+    %\insertframenumber/\inserttotalframenumber
+}
 
 %%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
-\begin{frame}
+\begin{titleframe}
 \titlepage
-\end{frame}
+\end{titleframe}
 
 \input{01_Shell.tex}
 \input{07_bibliography.tex}
