@@ -29,7 +29,7 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 	\end{note}
 \end{frame}
 
-\subsection{Bash: base concepts}
+\subsection{Base concepts}
 
 \begin{frame}{Open the shell}
 	The shell has different names depending on your operating system. For example:
@@ -85,7 +85,7 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 		
 \end{frame}
 
-\subsection{Bash: commands}
+\subsection{Commands}
 
 \begin{frame}{Really basic command}
 
@@ -207,16 +207,37 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 
 \begin{frame}{Exercise}
 	\begin{enumerate}
-		\item<1-> download the html page \code{http://artificial-intelligence.unibs.it/didattica-IA/?page_id=10}
-		\item<2-> save the just downloaded page with \mdQuote{AIslides.html}
+		\item<1-> download the html page \code{https://en.wikipedia.org/wiki/Artificial\_intelligence}
+		\item<2-> save the just downloaded page with \mdQuote{AI.html}
 		\item<3-> use less to view the HTML code of the page;
 		\item<4-> What is the character set of the page? (Hint: search \mdQuote{charset} in the top of the page);
-		\item<5-> Search every link of PDF file in the downloaded page (Hint: use \code{grep} as explained before by matching the PDF extension: every PDF has it!);
-		\item<6-> Download a pdf and look at the awesomeness that is artificial intelligence!
+		\item<5-> Search every link of JPG file in the downloaded page (Hint: use \code{grep} as explained before by matching the PDF extension: every JPG has it!);
+		\item<6-> Download a JPG you want and look at the awesomeness that is artificial intelligence!
 	\end{enumerate}
 \end{frame}
 
 \subsection{Advanced topics}
 
 \begin{frame}{Wildcard}
+
+Some commands may accept wildcards in their filename/strings. A \textbf{wildcard} is a character (\textbf{*}) that means  \textit{whatever string, i don't care}. A classic example is \code{rm} command. Assume you have a directory filled with log files (text files with extension \mdQuote{.log}). You may remove one file per time with \code{rm}; or you can type:
+
+\begin{center}
+	\code{rm *.log}
+\end{center}
+
+The command stands for \textit{Removes everything in the current working directory that has whatevr string but ends with \mdQuote{.log}}. Basically removes all the logs files.
+
+Another great example is grep:
+
+\begin{center}
+	\code{ls -l | grep *.log}
+\end{center}
+
+It consider only the files and directories which end with \mdQuote{.log}.
+
+\end{frame}
+
+\begin{frame}{Pipeline}
+
 \end{frame}
