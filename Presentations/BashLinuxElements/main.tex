@@ -3,6 +3,11 @@
 
 \usepackage{xparse}
 \usepackage{etoolbox}
+\usepackage{phdGeneral}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+
 
 \input{src/cmds/commands.tex}
 
@@ -23,16 +28,26 @@
 	\end{frame}
 }
 
+%%%%%%%%%%%%%%%%%%%% SET SEARH PATHS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addSrcFolder{{src/texs/}}
+\addImagesFolder{{src/imgs/}}
+\addTikzFolder{{src/tikzs/}}
+
+%%%%%%%%%%%%%%%%%%%%% CUSTOMIZE BEAMER OUTPUT %%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{bibliography item}[text]
+
+%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 
 \begin{frame}
 \titlepage
 \end{frame}
 
-\section{Bash}
-
-\begin{frame}{What is a bash?}
-\end{frame}
+\input{01_Shell.tex}
+\input{07_bibliography.tex}
 
 
 \end{document}
