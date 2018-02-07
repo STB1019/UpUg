@@ -106,7 +106,7 @@
 
 \newenvironment<>{titleframe}{%
 	\booltrue{is@frame@titleframe}%
-	\begin{frame}%
+	\begin{frame}[plain]%
 }{%
 	\end{frame}%
 	\boolfalse{is@frame@titleframe}%
@@ -114,3 +114,20 @@
 }
 
 \makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EXAMPLE ENVIRONMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% the first argument is the size fo the frame box
+\NewEnviron{examplecode}[1][\textwidth]{%
+	\framebox{\makebox[#1]{\BODY}}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TIKZ ENVIRONMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NewDocumentCommand{\tikzfile}{m O{1.0} O{}}{%
+	\scalebox{#2}{%
+		\begin{tikzpicture}[#3]%
+			\input{#1.tikz}%
+		\end{tikzpicture}%
+	}%
+}
