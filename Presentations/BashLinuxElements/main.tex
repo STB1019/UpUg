@@ -1,5 +1,6 @@
 \documentclass[pdf]{beamer}
 \mode<presentation>{}
+\usetheme{Frankfurt}
 
 
 \usepackage{phdGeneral}
@@ -8,13 +9,16 @@
 \usepackage{hyperref}
 %to have greate macro definitions
 \usepackage{xparse}
+\usepackage{environ} %https://tex.stackexchange.com/a/40043/145331
 \usepackage{etoolbox}
 %to color text https://texblog.org/2015/05/20/using-colors-in-a-latex-document/
 \usepackage{xcolor,soul}
 %used to create keystrokes
 \usepackage{tikz}
 \usetikzlibrary{shadows}
-
+\usetikzlibrary{arrows}
+%to use verbatim in boxes
+\usepackage{verbatimbox} %https://tex.stackexchange.com/a/120678/145331
 
 \input{src/cmds/commands.tex}
 
@@ -58,10 +62,12 @@
 \begin{document}
 
 \begin{titleframe}
+%\renewcommand{\insertnavigation}[1]{}
 \titlepage
 \end{titleframe}
 
 \input{01_Shell.tex}
+\input{02_Linux.tex}
 \input{07_bibliography.tex}
 
 
