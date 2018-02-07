@@ -1,0 +1,203 @@
+\section{Linux}
+
+\begin{frame}{What is linux?}
+	\begin{definition}{Linux}
+		Linux is the \textbf{kernel} (core) of any operating systems based on Linux.
+	\end{definition}
+	
+	\begin{definition}{Linux distribution}
+		A Linux \textbf{distribution} (often called distro for short) is an operating system made as a collection of software based around the Linux kernel.\cite{linux:whatis}
+	\end{definition}
+	
+	Linux distributions are, for example:
+	\begin{itemize}
+		\item Ubuntu;
+		\item Arch;
+		\item Lubuntu;
+		\item Puppy Linux;
+		\item and many, many others;
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Main components of a Linux distribution}
+
+\begin{figure}
+	\centering
+	\tikzfile{linuxMainComponents}[0.65]
+	\caption{A (incomplete) list of components in a Lnux distribution.\cite{linux:components:sabbagh, linux:components:wiki}}
+\end{figure}
+	
+\end{frame}
+
+\subsection{Users}
+
+\begin{frame}[fragile]{User management}
+
+\begin{block}{Users}
+In linux, each users may or may not perform operations on a file/directory. To cope with it, normally we use permission flags (the one returned by \code{ls -l}).
+\end{block}
+
+\begin{verbbox}
+-rw-rw-r-- 1 root koldar  920 gen 17 14:47 Makefile
+\end{verbbox}
+
+\only<1>{
+A \mdQuote{group} is a set of users. Each file has 2 associated names: the \textbf{user owning the file} (\textbf{owner}) and the \textbf{the group of the file}.
+
+\fbox{\theverbbox[t]}
+	
+The file \mdQuote{Makefile} is owned by the user \mdQuote{root} and is associated to the users within the group \mdQuote{koldar}.
+}
+
+\begin{verbbox}
+-rw-rw-r--  1 koldar koldar  12033 feb  5 16:03 Makefile
+\end{verbbox}
+
+\only<2>{
+Each permission is a set of about 9 bits:\footnote{There are more than 9 bits, but for clarity we chose to specify only these ones}
+
+\fbox{\theverbbox[t]}
+
+\begin{itemize}
+	\item \code{r} stands for \mdQuote{can \textbf{R}ead};
+	\item \code{w} stands for \mdQuote{can \textbf{W}rite};
+	\item \code{x} stands for \mdQuote{can e\textbf{X}ecute};
+\end{itemize}
+
+Each file/directory has 3 sets of these 3 bits:
+
+\begin{enumerate}
+	\item one set is applied only to the owner of the file;
+	\item one set is applied only to the users in the \textit{group of the file};
+	\item one set is applied to everyone else.
+\end{enumerate}
+
+}
+
+\only<3>{
+
+\fbox{\theverbbox[t]}
+
+\begin{figure}
+	\centering
+	\tikzfile{permissionFlags}[0.65]
+\end{figure}
+
+Each triple of bits can be seen as a binary number (for example owner bits can be interpreted as 6).
+
+\begin{note}
+If \mdQuote{permission denied} happens, it may be the case that your user can't gain access to the file or execute it!
+\end{note}
+
+}
+
+\end{frame}
+
+\begin{frame}{Exercise}
+	\begin{enumerate}
+		\item touch a new file \mdQuote{mario} (see command \code{touch});
+		\item use \code{chmod} to prevent \mdQuote{everyone} to \textit{read} the file (last triple of bits);
+		\item use \code{chmod} to make \mdQuote{everyone} to \textit{execute} the file (last triple of bits);
+		\item (OPTIONAL) use \code{chmod} with the syntax \mdQuote{ugoa+-rwx} to perform the same operation (see \code{chmod} man);
+		\item use \code{chown} to change the group of \mdQuote{mario} file to \mdQuote{sudo} (see \code{chown} man);
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Root}
+	Root is the \textbf{administrator} of your computer, the one which can do \textbf{anything} without worrying about permissions. Sudo has enormous power. Normal users (if permitted) may elevate to root power via (in Ubuntu-like distributions) command \code{sudo}.
+	
+\begin{verbbox}
+echo "Hello world by `whoami`"
+sudo echo "Hello wold by `whoami`"
+\end{verbbox}
+\fbox{\theverbbox[t]}
+
+Question: what the command \code{whoami} does?
+	
+\end{frame}
+
+\subsection{Package manager}
+
+\begin{frame}[fragile]{Package Manager}
+
+Additional software may be installed on your system. Different Linux distribution uses different package managers.
+Ubuntu uses \code{apt-get}.
+
+\begin{verbbox}
+sudo apt-get install graphviz
+\end{verbbox}
+\fbox{\theverbbox[t]}
+
+The above command install the software \mdQuote{graphviz}. Most package manager requires you to have administrator privileges (\code{sudo}).
+
+\begin{verbbox}
+sudo apt-get update
+\end{verbbox}
+\fbox{\theverbbox[t]}
+
+Updates the lists of available packages to install\cite{linux:update:upgrade}
+
+\begin{verbbox}
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+\end{verbbox}
+\fbox{\theverbbox[t]}
+
+Actually perform the new packages installation.
+
+Question: what the command \code{sudo apt-get autoremove} does?
+
+\end{frame}
+
+\begin{frame}{Manual installation}
+Some times you need to install software directly from the source. In this case:
+\begin{enumerate}
+	\item download the source code archive;
+	\item look for a file called README or INSTALL;
+	\item read such file!
+	\item if the above cannot be applied, look for a file called \mdQuote{Makefile}: if present do \code{make \&\& sudo make install};
+	\item if the above cannote be applied, look for a file called \mdQuote{configure}: if present do \code{./configure \&\& make \&\& make install};
+\end{enumerate}
+
+Question: what the command \code{\&\&} does?
+\end{frame}
+
+\begin{frame}[fragile]{File system structure}
+
+\begin{verbbox}
+koldar@koldar:~\textdollar ls -l /
+total 104
+drwxr-xr-x   2 root root  4096 feb  7 12:21 bin
+drwxr-xr-x   3 root root  4096 feb  7 12:21 boot
+drwxrwxr-x   2 root root  4096 ago  3  2017 cdrom
+drwxr-xr-x  19 root root  3940 feb  7 12:19 dev
+drwxr-xr-x 141 root root 12288 feb  7 12:21 etc
+drwxr-xr-x   3 root root  4096 ago  3  2017 home
+lrwxrwxrwx   1 root root    33 gen 25 09:58 initrd.img -> boot/initrd.img-4.4.0-112-generic
+lrwxrwxrwx   1 root root    33 gen 11 09:10 initrd.img.old -> boot/initrd.img-4.4.0-109-generic
+drwxr-xr-x  22 root root  4096 ago 16 09:34 lib
+drwxr-xr-x   2 root root  4096 gen 19 09:12 lib64
+drwx------   2 root root 16384 ago  3  2017 lost+found
+drwxr-xr-x   4 root root  4096 ago 16 09:25 media
+drwxr-xr-x   2 root root  4096 lug 19  2016 mnt
+drwxr-xr-x   5 root root  4096 dic 18 20:48 opt
+dr-xr-xr-x 191 root root     0 feb  7 12:19 proc
+drwx------   5 root root  4096 ott 31 16:40 root
+drwxr-xr-x  26 root root   920 feb  7 13:11 run
+drwxr-xr-x   2 root root 12288 feb  7 12:21 sbin
+drwxr-xr-x   2 root root  4096 giu 29  2016 snap
+drwxr-xr-x   2 root root  4096 lug 19  2016 srv
+dr-xr-xr-x  13 root root     0 feb  7 12:18 sys
+drwxr-xr-x   3 root root  4096 ott 17 09:46 tex
+drwxrwxrwt   9 root root  4096 feb  7 19:41 tmp
+drwxr-xr-x  11 root root  4096 lug 19  2016 usr
+drwxr-xr-x  14 root root  4096 lug 19  2016 var
+lrwxrwxrwx   1 root root    30 gen 25 09:58 vmlinuz -> boot/vmlinuz-4.4.0-112-generic
+lrwxrwxrwx   1 root root    30 gen 11 09:10 vmlinuz.old -> boot/vmlinuz-4.4.0-109-generic
+\end{verbbox}
+\scalebox{0.55}{
+	\fbox{\theverbbox[t]}%
+}
+
+\end{frame}
