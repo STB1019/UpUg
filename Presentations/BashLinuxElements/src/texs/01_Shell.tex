@@ -85,6 +85,12 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 		
 \end{frame}
 
+\begin{frame}{Return value}
+	Each command has a \textbf{return value}, which is an integer. If the return value of a command is 0, everything was successful; otherwise an error occured while executing the command. You can get the return value of the last command executed with \code{\textdollar{}?}.
+	
+	
+\end{frame}
+
 \subsection{Commands}
 
 \begin{frame}{Really basic command}
@@ -109,13 +115,19 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 		If you can't still find an example, try go to google and type \mdQuote{command\_you\_want examples}: for instance, you may google \mdQuote{grep examples} or \mdQuote{grep tutorial}.
 	}
 	
+	\only<4>{
+		\begin{block}{echo}
+			Prints a string on the console. For example \code{echo "Hello world!"}
+		\end{block}
+	}
+	
 \end{frame}
 
 \begin{frame}{Exercise}
 
 	\begin{enumerate}
 		\item<1-> What \code{mkdir} command does?
-		\item<2-> Tell me an example of command option (both brief and long);
+		\item<2-> Tell me an example of command option (both brief and long) of command \code{mkdir};
 		\item<3-> How many arguments it can accept?
 	\end{enumerate}
 	
@@ -135,6 +147,14 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 		Enters in a subdirectory inside \code{pwd}. Every directory has the directory \code{..}, representing the parent of the directory itself, and the directory \code{.}, representing the directory itself. Hence, the direcotry \mdQuote{/home/koldar/} has a subdirectory called \code{..} pointing to \code{/home/} and a directory called \code{.}, pointing to \code{/home/koldar/}.
 	\end{block}
 
+\end{frame}
+
+\begin{frame}{Exercises}
+	\begin{enumerate}
+		\item<1-> list of the files in a directory (even the \textit{hidden ones}, namely the files starting with \mdQuote{.});
+		\item<2-> list the content of the directory by size: the first one is the biggest file while the last in the list is the smallest one;
+		\item<3-> retrieve the version of the command \mdQuote{pwd};
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}{File system manipulation}
@@ -174,21 +194,33 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 \end{frame}
 
 \begin{frame}{File manipulation}
-	\begin{block}{cp}
-		Copy files and directories. For example \code{cp file\_to\_copy name\_of\_copy}
-	\end{block}
+	\only<1>{
+		\begin{block}{cp}
+			Copy files and directories. For example \code{cp file\_to\_copy name\_of\_copy}
+		\end{block}
+		
+		\begin{block}{mv}
+			Cut files and directory and paste them in another place. You can use this command to rename files as well (\eg \code{mv hello world}).
+		\end{block}
+		
+		\begin{block}{cat}
+			Concatenate several files content in a single output. You can use it to view the content of a single file as well (\eg \code{cat hello}).
+		\end{block}
+	}
 	
-	\begin{block}{mv}
-		Cut files and directory and paste them in another place. You can use this command to rename files as well (\eg \code{mv hello world}).
-	\end{block}
-	
-	\begin{block}{cat}
-		Concatenate several files content in a single output. You can use it to view the content of a single file as well (\eg \code{cat hello}).
-	\end{block}
-	
-	\begin{block}{less}
-		Read a file. This is an awesome reader which can even several useful commands. You can view the commands in \code{less} by pressing \mdQuote{h} when less is executing.
-	\end{block}
+	\only<2>{
+		\begin{block}{less}
+			Read a file. This is an awesome reader which can even several useful commands. You can view the commands in \code{less} by pressing \mdQuote{h} when less is executing.
+		\end{block}
+		
+		\begin{block}{tail}
+			Prints the last $n$ lines of a file.
+		\end{block}
+		
+		\begin{block}{head}
+			Prints the first $n$ lines of a file.
+		\end{block}
+	}
 \end{frame}
 
 \begin{frame}{Miscellanea}
@@ -220,13 +252,13 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 
 \begin{frame}{Wildcard}
 
-Some commands may accept wildcards in their filename/strings. A \textbf{wildcard} is a character (\textbf{*}) that means  \textit{whatever string, i don't care}. A classic example is \code{rm} command. Assume you have a directory filled with log files (text files with extension \mdQuote{.log}). You may remove one file per time with \code{rm}; or you can type:
+Most commands accept wildcards in their filename or strings. A \textbf{wildcard} is a character (\textbf{*}) that means  \textit{whatever string, I don't care}. A classic example is \code{rm} command. Assume you have a directory filled with log files (text files with extension \mdQuote{.log}). You may remove one file per time with \code{rm}; or you can type:
 
 \begin{center}
 	\code{rm *.log}
 \end{center}
 
-The command stands for \textit{Removes everything in the current working directory that has whatevr string but ends with \mdQuote{.log}}. Basically removes all the logs files.
+The command stands for \textit{Removes everything in the current working directory that has whatever name but ends with \mdQuote{.log}}. Basically removes all the logs files.
 
 Another great example is grep:
 
@@ -238,6 +270,77 @@ It consider only the files and directories which end with \mdQuote{.log}.
 
 \end{frame}
 
-\begin{frame}{Pipeline}
+\begin{frame}[fragile]{Pipeline}
+	\only<1->
+	\begin{block}{Pipeline}
+		Given the syntax \code{command-x command-options-x command-arguments-x | command-y command-options-y command-arguments-y} the pipeline allows to pass the standard output of command \code{command-x} as standard input of command \code{command-y}.
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Example of pipeline}
+
+	For example, \code{ls -l  | grep "tex"} pass the standard output of the command \code{ls -l}, naley something like:
+\begin{verbatim}
+total 24
+drwxrwxr-x 2 koldar koldar 4096 feb  6 14:21 build
+-rw-rw-r-- 1 koldar koldar 1555 feb  5 15:46 main.tex
+-rw-rw-r-- 1 koldar koldar  920 gen 17 14:47 Makefile
+-rw-rw-r-- 1 koldar koldar 2053 feb  5 11:28 phd.sty
+-rw-rw-r-- 1 koldar koldar 1172 feb  5 23:09 session.tks
+drwxrwxr-x 7 koldar koldar 4096 feb  5 11:49 src
+\end{verbatim}
+	to the command \code{grep "tex"}. Since tex occurs only in the third line, the output of \code{ls -l  | grep "tex"} is:
+\begin{verbatim}
+-rw-rw-r-- 1 koldar koldar 1555 feb  5 15:46 main.tex
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Bash Scripts}
+	Instead of typing the same commands over and over, you can create a script containing for each line a command.
+	When executing the script, the operating system will execute the commands contained in the script.
+	
+	\begin{block}{Script}
+		A Bash script is a plain text file which contains a series of commands.\cite{bash:script}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Simplest bash script ever!}
+\begin{verbatim}
+#!/bin/bash
+# A sample Bash script, by Ryan
+echo "Hello World!"
+\end{verbatim}
+
+Call the script\cite{bash:script} something like "mario.bash" and run the command \code{chmod u+x mario.bash}.
+To execute it, type \code{./mario.bash}.
+
+\begin{note}
+Comments in bash scripts starts with \mdQuote{\#}. The first comment in the script above is \textbf{mandatory}.
+Everything you put in bash scripts can be manually typed on the shell terminal as well.
+\end{note}
+\end{frame}
+
+\begin{frame}[fragile]{Variables}
+	You can define variables in scripts as well. Generally to create a variable (notice the \textbf{absence} of spaces):
+	
+\begin{verbatim}
+VARIABLE_NAME=VARIABLE_VALUE
+\end{verbatim}
+
+	To use the variable value you can use:
+	
+\begin{verbatim}
+${VARIABLE_NAME}
+\end{verbatim}
+
+	Variables are replaced inside \code{"} as well! Here a full example:
+	
+\begin{verbbox}
+	#!/bin/bash
+	echo "Enter your name:"
+	read your_name
+	echo "Your name is \textdollar{your_name}"
+\end{verbbox}
+\fbox{\theverbbox[t]}
 
 \end{frame}
