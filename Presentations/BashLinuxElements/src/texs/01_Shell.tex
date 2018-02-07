@@ -52,13 +52,13 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 	For example:
 	
 	\begin{parcenter}[1pt]
-		\code{mkdir -p -v --mode=777 "hello/world"}
+		\code{mkdir -p -v -\relax-mode=777 "hello/world"}
 	\end{parcenter}
 	
 	\only<1>{
 	\begin{enumerate}
 		\item \code{command-name} is the name of the command, in this case \mdQuote{mkdir};
-		\item \code{command options} area is an optional part of the command. It represents some flags, options that slightly alter the command behaviour. For example here the options are \mdQuote{-pv --mode=777}.
+		\item \code{command options} area is an optional part of the command. It represents some flags, options that slightly alter the command behaviour. For example here the options are \mdQuote{-pv -\relax-mode=777}.
 		\item \code{command arguments} (if any) represents the value the command mainly operate with. They are not prefixed by any \mdQuote{-} character whatsoever. For example \mdQuote{"hello/world"} represents the command arguments.
 	\end{enumerate}
 	}
@@ -67,7 +67,7 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 		Options can be typed using 2 conventions: 
 		\begin{itemize}
 			\item \textbf{brief}(\code{-p}): Typically (but not always) \textit{brief} options have 1 \mdQuote{-} and one character. For example the command has 2 brief options, \code{-p} and \code{-v}. Brief options can be merged: for example typing \mdQuote{-p -v} is always equal (except in few instances) to \mdQuote{-pv}. 
-			\item \textbf{long}(\code{--mode}): They are typically (but not always) prefixed by \mdQuote{--}. They are usually composed by more than one character (\ie \mdQuote{mode}).
+			\item \textbf{long}(\code{-\relax-mode}): They are typically (but not always) prefixed by \mdQuote{--}. They are usually composed by more than one character (\ie \mdQuote{mode}).
 		\end{itemize}
 	}
 	
@@ -75,11 +75,11 @@ Simply put, the shell is a program that takes commands from the keyboard and giv
 		Both \textit{brief} and \textit{long} options can accept arguments. Normally it done using this syntax:
 		\begin{itemize}
 			\item \textbf{brief}: in general you type the character representing the option, a space and the value of the option (\ie{} \code{-m 777});
-			\item \textbf{long}: in general you type the string of the option, a \mdQuote{=} and th value of the option(\ie{} \code{--mode=777});
+			\item \textbf{long}: in general you type the string of the option, a \mdQuote{=} and th value of the option(\ie{} \code{-\relax-mode=777});
 		\end{itemize}
 		
 		\begin{note}
-			Most options in most commands have both a \textit{brief} and a \textit{long} name. For instance, \mdQuote{-m} and \mdQuote{--mode} for \code{mkdir} commands are synonyms.
+			Most options in most commands have both a \textit{brief} and a \textit{long} name. For instance, \mdQuote{-m} and \mdQuote{-\relax-mode} for \code{mkdir} commands are synonyms.
 		\end{note}
 	}
 		
