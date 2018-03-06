@@ -1,0 +1,39 @@
+\tikzstyle{rect}=[rectangle,draw=blue!50,fill=blue!20,thick,
+inner sep=0pt,minimum size=6mm];
+
+\pgfarrowsdeclare{directEdge}{directEdge}{%
+	\arrowsize=0.2pt
+	\advance\arrowsize by .5\pgflinewidth
+	\pgfarrowsleftextend{-4\arrowsize-.5\pgflinewidth}
+	\pgfarrowsrightextend{.5\pgflinewidth}
+}{%
+	\arrowsize=1pt
+	\advance\arrowsize by .5\pgflinewidth
+	\pgfsetdash{}{0pt} % do not dash
+	\pgfsetroundjoin % fix join
+	\pgfsetroundcap % fix cap
+	\pgfpathmoveto{\pgfpointorigin}
+	\pgfpathlineto{\pgfpoint{-6\arrowsize}{2.2\arrowsize}}
+	\pgfpathlineto{\pgfpoint{-6\arrowsize}{-2.2\arrowsize}}
+	\pgfpathclose
+	\pgfusepathqfill
+}
+
+\tikzset{node distance=2.6cm};
+
+\node[rect] (linux)			at (0,0)  			{Linux distribution};
+\node[rect] (package)		[below of=linux]	{Package System};
+\node[rect] (file)			[left of=package]	{File System};
+\node[rect] (window)		[right of=package]	{Window Server};
+\node[rect] (display)		[left of=file]		{Display Manager};
+\node[rect] (users)			[right of=window]	{Users};
+\node[rect] (boot)			[left of=display]	{Boot Loader};
+\node[rect] (daemons)		[right of=users]	{Daemons};
+
+\draw [-directEdge] (linux) to (package);
+\draw [-directEdge] (linux) to (file);
+\draw [-directEdge] (linux) to (window);
+\draw [-directEdge] (linux) to (display);
+\draw [-directEdge] (linux) to (users);
+\draw [-directEdge] (linux) to (boot);
+\draw [-directEdge] (linux) to (daemons);

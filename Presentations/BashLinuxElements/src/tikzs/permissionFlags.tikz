@@ -1,0 +1,4 @@
+\foreach \x\y in {0/1,1/1,2/0,3/1,4/1,5/0,6/1,7/0,8/0} {
+	\node (nvalue\x\y) [minimum width=1cm] at (\x, 0) {\x};
+	\node (n\x\y) [draw, minimum width=1cm] at (\x, -0.5) {\y};
+}
